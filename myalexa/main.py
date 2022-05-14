@@ -21,7 +21,7 @@ BoxLayout:
     spacing: 30
     space_x: self.size[0]/3
     MDToolbar:
-        title: 'Alexa'
+        title: 'MAC-Alexa'
         md_bg_color: app.theme_cls.primary_color
         specific_text_color: 1, 1, 1, 1
 
@@ -102,30 +102,42 @@ class Alexa(MDApp):
             server.close()
 
         def usrname():
-            name1 = person()
-            talk("What should i call you sir")
-            uname = take_command()
-            name1.setName(uname)
-            talk("Welcome Mister")
-            talk(uname)
+            #for _ in range(3):
+                try:
+                    name1 = person()
+                    talk("What should i call you sir")
+                    uname = take_command()
+                    name1.setName(uname)
+                    talk("Welcome Mister")
+                    talk(uname)
 
-            talk("How can i Help you, Sir")
+                    talk("How can i Help you, Sir")
+                except:
+                    talk("Please say that again...")
+                    #continue
+            #else:  # if the loop exited normally, e.g. if all 3 attempts failed
+               # pass
+               # talk("Please try again....")
 
         def wishMe():
 
-            hour = int(datetime.datetime.now().hour)
-            if hour >= 0 and hour < 12:
-                talk("Good Morning Sir !")
+                hour = int(datetime.datetime.now().hour)
 
-            elif hour >= 12 and hour < 18:
-                talk("Good Afternoon Sir !")
+                if hour >= 0 and hour < 12:
+                    talk("Good Morning Sir !")
 
-            else:
-                talk("Good Evening Sir !")
+                elif hour >= 12 and hour < 18:
+                    talk("Good Afternoon Sir !")
 
-            asname = ("alexa 1 point o")
-            talk("I am your Assistant")
-            talk(asname)
+                else:
+                    talk("Good Evening Sir !")
+
+                asname = ("alexa 1 point o")
+                talk("I am your Assistant")
+                talk(asname)
+
+
+
 
         # Main function
         if __name__ == '__main__':
@@ -152,6 +164,7 @@ class Alexa(MDApp):
 # wikipedia
                 elif "wikipedia" in command:
                     webbrowser.open("wikipedia.com")
+                    talk("opening wikipedia...")
 # where is
                 elif "where is" in command:
                     query = command.replace("where is", "")
@@ -172,7 +185,7 @@ class Alexa(MDApp):
 
                     talk(info)
 # dating
-                elif 'date' in command:
+                elif 'date with me' in command:
                     talk('sorry, I have a headache')
 # single
                 elif 'are you single' in command:
@@ -211,9 +224,12 @@ class Alexa(MDApp):
                     asname = take_command()
                     talk("Thanks for naming me" + asname)
 # ur name
-                elif "what's your name" in command or "What is your name" in command:
-                    talk("My friends call me")
-                    talk("alexa")
+                elif "what is your name" in command or "What is your name" in command:
+                    talk("My friends call me alexa")
+
+# ur name
+                elif "your lover" in command or "lover name" in command:
+                    talk("I'm in love with Macucuchi Macusubhi aka Mahesh")
 
 # who made you
                 elif "who made you" in command or "who created you" in command:
@@ -224,7 +240,7 @@ class Alexa(MDApp):
                     talk("How are you, Sir")
 # i'm bored
                 elif ' bore' in command:
-                    talk("ma i play you some song")
+                    talk("may i play you some song")
 # fine
                 elif 'fine' in command:
                     talk("It's good to know that your fine")
@@ -286,6 +302,7 @@ class Alexa(MDApp):
                         talk("Error in the HTTP request")
 # news
                 elif 'news' in command:
+                    talk("headlines from BBC news")
 
                     # BBC news api
                     # following query parameters are used
